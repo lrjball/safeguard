@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Base{% endblock %}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'safeguard/img/favicon.png' %}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<style>
+    .dark-header {
+        background-color: white;
+        #background-color: white;
+        color: black;
+    }
+
+    .header-link, .header-link:focus  {
+        color: black;
+    }
+
+    .header-link:hover{
+        color: black;
+        text-decoration: underline;
+    }
+
+    .btn {
+        border-radius: 0px;
+    }
+
+    .btn-primary {
+        background-color: #1c5ba7;
+        border-color: #1c5ba7;
+    }
+
+    .btn-outline-primary {
+        color: #1c5ba7;
+        border-color: #1c5ba7;
+    }
+
+    {% comment %} .btn-primary:hover, .btn-outline-primary:hover,.btn-primary:focus, .btn-outline-primary:focus {
+        background-color: #1c5ba7 !important;
+        border-color: #1c5ba7 !important;
+    } {% endcomment %}
+</style>
+{% include "guard/header.html" %}
+
+{% block content %}
+{% endblock %}
+
+{% comment %} {% include "safeguard/footer.html" %} {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>  
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% include "guard/base.html" %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>\
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for therapist in therapist_list %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{% url 'therapist_detail' therapist.id %}">{{ therapist.name }}</a></td>
+        <td>{{ therapist.get_status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

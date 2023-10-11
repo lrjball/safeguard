@@ -1,0 +1,8 @@
+{% include "guard/base.html" %}
+
+<h1>{{ therapist.name }}</h1>
+<p>{{ therapist.email }}</p>
+
+{% for appointment in therapist.appointment_set.all %}
+<p>{{ appointment.client.name }}, {{ appointment.start_time }}</p>
+{% endfor %}

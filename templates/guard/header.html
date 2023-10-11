@@ -1,0 +1,28 @@
+{% load static %}
+
+<header class="p-3 dark-header">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="{{ home }}" class="d-flex align-items-center me-4 mb-3 mb-lg-0 text-white text-decoration-none">
+          <img src="{% static 'img/logo.png' %}" height="60" aria-label="ListeningEar">
+        </a>
+
+        <div class="text-end">
+            {% if user.is_authenticated %}
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+             Logged in as: {{ user.username }}
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <li>
+                    <form method="post" action="/accounts/logout/">
+                        {% csrf_token %}
+                        <button class="dropdown-item" type="submit">Sign out</button>
+                    </form>
+                </li>
+              </ul>                
+            {% endif %}
+        </div>
+      </div>
+    </div>
+</header>
