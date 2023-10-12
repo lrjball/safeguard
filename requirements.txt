@@ -1,4 +1,4 @@
-django#==4.2.6
+django
 whitenoise
 django-jazzmin
 django-bootstrap-themes
