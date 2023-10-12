@@ -4,21 +4,30 @@
 
 {% block content %}
   <ul role="list" class="divide-y divide-gray-100">
-    {% for therapist in therapist_list %}
+    {% for therapist in therapist_url_list %}
     <li class="flex justify-between gap-x-2 py-5 my-2" style="background-color: #AEE3EA; border-radius: 50px">
       <div class="flex min-w-0 gap-x-2 px-5">
-        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{ therapist.1}}">
+        {% comment %} https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> {% endcomment %}
         <div class="min-w-0 flex-auto">
           <p class="text-sm font-semibold leading-6 text-gray-900">
-            <a href={% url 'therapist_detail' therapist.id %}>
-                {{ therapist.name }}
+            <a href={% url 'therapist_detail' therapist.0.id %}>
+                {{ therapist.0.name }}
             </a></p>
-          <p class="mt-1 truncate text-xs leading-5 text-gray-500"> {{ therapist.email }}</p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500"> {{ therapist.0.email }}</p>
         </div>
       </div>
       <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end px-8">
-        <p class="text-sm leading-6 text-gray-900">{{ therapist.get_current_status.0 }}</p>
+        {% if therapist.0.get_current_status.1 == 1%}
+        <p class="text-sm leading-6 text-gray-900">{{ therapist.0.get_current_status.0 }}</p>
+        <p class="mt-1 text-xs leading-5 text-orange-500"></p>
+        {% elif therapist.0.get_current_status.1 == 2%}
+    <p class="text-sm leading-6 text-red-900">{{ therapist.0.get_current_status.0 }}</p>
         <p class="mt-1 text-xs leading-5 text-gray-500"></p>
+        {% elif therapist.0.get_current_status.1 == 0%}
+        <p class="text-sm leading-6 text-gray-900">{{ therapist.0.get_current_status.0 }}</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500"></p>
+        {% endif %}
       </div>
     </li>
     {% endfor %}
