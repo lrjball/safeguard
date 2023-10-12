@@ -3,3 +3,4 @@ whitenoise
 django-jazzmin
 django-bootstrap-themes
 psycopg2-binary
+folium
