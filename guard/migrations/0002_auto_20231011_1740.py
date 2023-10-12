@@ -17,7 +17,8 @@ mock_data = {
     'Therapist': [
         {
             'name': 'John Smith',
-            'safeguard_lead': 'Bill West'
+            'safeguard_lead': 'Bill West',
+            'url': 'https://unsplash.com/photos/7YVZYZeITc8',
         },
         {
             'name': 'Peter Pan',
@@ -174,7 +175,7 @@ mock_data = {
             'age': 37
         },
         {
-            'name': 'Zahra O’brien',
+            'name': 'Zahra O\'brien',
             'age': 22
         },
         {

@@ -2,3 +2,4 @@ django#==4.2.6
 whitenoise
 django-jazzmin
 django-bootstrap-themes
+psycopg2-binary

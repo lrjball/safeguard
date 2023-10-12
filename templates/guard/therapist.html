@@ -1,8 +1,33 @@
-{% include "guard/base.html" %}
+{% extends "guard/base.html" %}
+{% block page_name %}Appointments{% endblock %}
+{% block title %}Appointments - {{ therapist.name }}{% endblock %}
 
-<h1>{{ therapist.name }}</h1>
-<p>{{ therapist.email }}</p>
+{% block content %}
+<a href={% url 'therapists' %}>< All Therapists</a>
+  <ul role="list" class="divide-y divide-gray-100">
+    {% for appointment in appointments %}
+    <li class="flex justify-between gap-x-2 py-5 my-2" style="background-color: #AEE3EA; border-radius: 50px">
+      <div class="flex min-w-0 gap-x-2 px-5">
+        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <div class="min-w-0 flex-auto">
+          <p class="text-sm font-semibold leading-6 text-gray-900">
+            <a href={% url 'appointment_detail' appointment.id %}>
+                {{ appointment.client.name }}
+            </a></p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500"> {{ appointment.app_type }} - {{ appointment.address}}</p>
+        </div>
+      </div>
+      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end px-8">
+        <p class="text-sm leading-6 text-gray-900">{{ appointment.start_time }}</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500"><time datetime="2023-01-23T13:23Z">{{ appointment.time_from_now }}</time></p>
+      </div>
 
-{% for appointment in therapist.appointment_set.all %}
-<p>{{ appointment.client.name }}, {{ appointment.start_time }}</p>
-{% endfor %}
+    </li>
+    {% endfor %}
+    {% if not appointments %}
+    <div class="flex align-center justify-center min-w-0 gap-x-2 px-5 py-20">
+    <p> No upcoming appointments </p>
+    </div>
+    {% endif %}
+  </ul>
+{% endblock %}

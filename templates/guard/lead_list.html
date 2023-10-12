@@ -1,20 +1,28 @@
-{% include "guard/base.html" %}
+{% extends "guard/base.html" %}
+{% block page_name %}Therapists{% endblock %}
+{% block title %}Therapist Overview{% endblock %}
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>\
-        <th scope="col">Name</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for therapist in therapist_list %}
-      <tr>
-        <th scope="row">{{ forloop.counter }}</th>
-        <td><a href="{% url 'therapist_detail' therapist.id %}">{{ therapist.name }}</a></td>
-        <td>{{ therapist.get_status }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% block content %}
+  <ul role="list" class="divide-y divide-gray-100">
+    {% for therapist in therapist_list %}
+    <li class="flex justify-between gap-x-2 py-5 my-2" style="background-color: #AEE3EA; border-radius: 50px">
+      <div class="flex min-w-0 gap-x-2 px-5">
+        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <div class="min-w-0 flex-auto">
+          <p class="text-sm font-semibold leading-6 text-gray-900">
+            <a href={% url 'therapist_detail' therapist.id %}>
+                {{ therapist.name }}
+            </a></p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500"> {{ therapist.email }}</p>
+        </div>
+      </div>
+      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end px-8">
+        <p class="text-sm leading-6 text-gray-900">{{ therapist.get_current_status.0 }}</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500"></p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {{ map|safe }}
+{% endblock %}
